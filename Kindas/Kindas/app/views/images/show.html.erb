@@ -1,0 +1,10 @@
+<p>
+    タイトル:
+    <%= @image.title %>
+</p>
+<p>
+    <%= image_tag "/get_image/#{@image.id}", size: "100x100" %>
+    
+</p>
+
+<%= link_to 'Back', '/' %>

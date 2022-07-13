@@ -1,0 +1,55 @@
+<h1>Images</h1>
+
+<% flag = "normal" %>
+
+<p><%= link_to '昇順', flag = "asc" %></p>
+<p><%= link_to '降順', flag = "desc" %></p>
+<p><%= link_to '元に戻す', flag = "normal" %></p>
+
+<%= if flag == "normal" then %>
+    <% @images.each do |image| %>
+        <p>
+        <%= image.title %>
+        <%= image_tag "/get_image/#{image.id}", size: "100x100" %>
+        <%= link_to '削除', "/images/#{image.id}", method: :delete %> 
+        <%= link_to '表示', "/images/#{image.id}"%>
+        <%= link_to '編集', "/images/#{image.id}/edit"%> <!--showのurlと区別（deleteはページがない）-->
+        <!--method: HTTPメソッドの指定（:post, :delete, :patch, :put）-->
+        </p>
+    <% end %>
+    
+    
+<%= else  %>
+    <%= if flag == "asc" then %>
+        <% @images_asc.each do |image| %>
+            <p>
+            <%= image.title %>
+            <%= image_tag "/get_image/#{image.id}", size: "100x100" %>
+            <%= link_to '削除', "/images/#{image.id}", method: :delete %> 
+            <%= link_to '表示', "/images/#{image.id}"%>
+            <%= link_to '編集', "/images/#{image.id}/edit"%> <!--showのurlと区別（deleteはページがない）-->
+            <!--method: HTTPメソッドの指定（:post, :delete, :patch, :put）-->
+            </p>
+        <% end %>
+    
+    
+    <%= else %>
+        <% @images_desc.each do |image| %>
+            <p>
+            <%= image.title %>
+            <%= image_tag "/get_image/#{image.id}", size: "100x100" %>
+            <%= link_to '削除', "/images/#{image.id}", method: :delete %> 
+            <%= link_to '表示', "/images/#{image.id}"%>
+            <%= link_to '編集', "/images/#{image.id}/edit"%> <!--showのurlと区別（deleteはページがない）-->
+            <!--method: HTTPメソッドの指定（:post, :delete, :patch, :put）-->
+            </p>
+        <% end %>
+    
+    <% end %>
+<% end %>
+
+<p><%= link_to '新規追加', '/images/new' %></p>
+
+
+
+
